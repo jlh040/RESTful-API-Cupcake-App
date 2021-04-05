@@ -60,7 +60,6 @@ def update_cupcake(id):
         cupcake.size = request.json['size']
     
     db.session.commit()
-
     return jsonify(cupcake=cupcake.serialize_cupcake())
     
 @app.route('/api/cupcakes/<int:id>', methods=['DELETE'])
