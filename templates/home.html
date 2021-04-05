@@ -10,7 +10,7 @@
 <body class="bg-light">
     <div class="container">
         <h1 class="display-3 text-center text-primary">Cupcake Paradise</h1>
-        <form class="row" action="/api/cupcakes" method="POST">
+        <form class="row">
             <div class="col-6 mt-3">
                 <label for="flavor" class="form-label">Flavor:</label>
                 <input type="text" class="form-control" id="flavor">
@@ -25,10 +25,10 @@
             </div>
             <div class="col-6 mt-3">
                 <label for="image" class="form-label">Image:</label>
-                <input type="text" class="form-control" id="image">
+                <input type="text" class="form-control" id="image" placeholder="Optional">
             </div>
             <div class="col-6">
-                <button id="submit-button" class="btn btn-outline-primary mt-3">
+                <button type = "button" id="submit-button" class="btn btn-outline-primary mt-3">
                     Create Cupcake
                 </button>
             </div>
