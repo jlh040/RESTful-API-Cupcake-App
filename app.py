@@ -15,6 +15,17 @@ app.config['SECRET_KEY'] = '3nc7v9a1x'
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 debug = DebugToolbarExtension(app)
 
+def create_cupcake_instance(flavor, size, rating, image):
+    """Create a cupcake instance."""
+    new_cupcake = Cupcake(flavor=flavor, size=size, rating=rating, image=image)
+    db.session.add(new_cupcake)
+    db.session.commit()
+
+    return new_cupcake
+
+# def create_cupcake_dictionary(flavor, size, rating, image):
+#     """Create a dictionary based on passed in data.
+
 @app.route('/api/cupcakes', methods = ['GET'])
 def get_all_cupcakes():
     """Get all cupcakes from the db."""
@@ -36,15 +47,26 @@ def create_cupcake():
     image = request.json.get('image')
 
     new_cupcake = create_cupcake_instance(flavor, size, rating, image)
-
     return (jsonify(cupcake=new_cupcake.serialize_cupcake()), 201)
 
+@app.route('/api/cupcakes/<int:id>', methods=['PATCH'])
+def update_cupcake(id):
+    """Update a cupcake."""
+    cupcake = Cupcake.query.get_or_404(id)
+    if request.json.get('flavor'):
+        cupcake.flavor = request.json['flavor']
 
-def create_cupcake_instance(flavor, size, rating, image):
-    """Create a cupcake instance."""
-    new_cupcake = Cupcake(flavor=flavor, size=size, rating=rating, image=image)
-    db.session.add(new_cupcake)
+    if request.json.get('rating'):
+        cupcake.rating = request.json['rating']
+
+    if request.json.get('size'):
+        cupcake.size = request.json['size']
+    
     db.session.commit()
 
-    return new_cupcake
+    return jsonify(cupcake=cupcake.serialize_cupcake())
+    
+
+
+
     
