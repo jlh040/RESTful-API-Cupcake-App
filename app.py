@@ -20,3 +20,9 @@ def get_all_cupcakes():
     """Get all cupcakes from the db."""
     all_cakes = [cupcake.serialize_cupcake() for cupcake in Cupcake.query.all()]
     return jsonify(cupcakes=all_cakes)
+
+@app.route('/api/cupcakes/<int:id>', methods=['GET'])
+def get_single_cupcake(id):
+    """Get a cupcake based off of its id."""
+    cupcake = Cupcake.query.get_or_404(id)
+    return jsonify(cupcake=cupcake.serialize_cupcake())
