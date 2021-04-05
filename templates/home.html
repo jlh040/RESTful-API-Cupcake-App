@@ -7,9 +7,40 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 </head>
-<body>
+<body class="bg-light">
     <div class="container">
-        <h1>Hello</h1>
+        <h1 class="display-3 text-center text-primary">Cupcake Paradise</h1>
+        <form class="row" action="/api/cupcakes" method="POST">
+            <div class="col-6 mt-3">
+                <label for="flavor" class="form-label">Flavor:</label>
+                <input type="text" class="form-control" id="flavor">
+            </div>
+            <div class="col-6 mt-3">
+                <label for="size" class="form-label">Size:</label>
+                <input type="text" class="form-control" id="size">
+            </div>
+            <div class="col-6 mt-3">
+                <label for="rating" class="form-label">Rating:</label>
+                <input type="text" class="form-control" id="rating">
+            </div>
+            <div class="col-6 mt-3">
+                <label for="image" class="form-label">Image:</label>
+                <input type="text" class="form-control" id="image">
+            </div>
+            <div class="col-6">
+                <button class="btn btn-outline-primary mt-3">
+                    Create Cupcake
+                </button>
+            </div>
+        </form>
+        <div class="row mt-4">
+            <div class="col">
+                <h1 class="display-6 text-center">Cupcake list:</h1>
+                <ul class="list-group">
+                    <!-- <li class="list-group-item list-group-item-primary"></li> -->
+                </ul>
+            </div>
+        </div>
     </div>
 
 
