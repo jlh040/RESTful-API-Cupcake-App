@@ -23,9 +23,6 @@ def create_cupcake_instance(flavor, size, rating, image):
 
     return new_cupcake
 
-# def create_cupcake_dictionary(flavor, size, rating, image):
-#     """Create a dictionary based on passed in data.
-
 @app.route('/api/cupcakes', methods = ['GET'])
 def get_all_cupcakes():
     """Get all cupcakes from the db."""
