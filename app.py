@@ -26,3 +26,25 @@ def get_single_cupcake(id):
     """Get a cupcake based off of its id."""
     cupcake = Cupcake.query.get_or_404(id)
     return jsonify(cupcake=cupcake.serialize_cupcake())
+
+@app.route('/api/cupcakes', methods=['POST'])
+def create_cupcake():
+    """Create a single cupcake."""
+    flavor = request.json['flavor']
+    size = request.json['size']
+    rating = request.json['rating']
+    image = request.json.get('image')
+
+    new_cupcake = create_cupcake_instance(flavor, size, rating, image)
+
+    return (jsonify(cupcake=new_cupcake.serialize_cupcake()), 201)
+
+
+def create_cupcake_instance(flavor, size, rating, image):
+    """Create a cupcake instance."""
+    new_cupcake = Cupcake(flavor=flavor, size=size, rating=rating, image=image)
+    db.session.add(new_cupcake)
+    db.session.commit()
+
+    return new_cupcake
+    
