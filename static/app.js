@@ -16,19 +16,6 @@ async function getCupcakeArr() {
     return resp.data.cupcakes;
 }
 
-function createCardHtml(flavor, size, rating, image_url) {
-    return  `
-            <div class="card d-inline-block ms-3 mt-3" style="width: 18rem;">
-                <img src="${image_url}" class="card-img-top">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Flavor: ${flavor}</li>
-                    <li class="list-group-item">Size: ${size}</li>
-                    <li class="list-group-item">Rating: ${rating}</li>
-                </ul>
-            </div>
-            `
-};
-
 async function putCardsOnPage(arrOfCupcakes) {
     const $cupcakeList = $('#cupcakes-list')
     $cupcakeList.empty()
@@ -39,6 +26,13 @@ async function putCardsOnPage(arrOfCupcakes) {
         )
     };
 };
+
+async function sendDataToApi(obj) {
+    await axios.post(
+        BASE_URL,
+        obj
+    )
+}
 
 function getDataFromForm() {
     const flavor = $('#flavor').val();
@@ -63,19 +57,15 @@ function emptyInputs() {
     return
 }
 
-async function sendDataToApi(obj) {
-    await axios.post(
-        BASE_URL,
-        obj
-    )
-}
-
-
-
-
-
-
-
-
-
-
+function createCardHtml(flavor, size, rating, image_url) {
+    return  `
+            <div class="card d-inline-block ms-3 mt-3" style="width: 18rem;">
+                <img src="${image_url}" class="card-img-top">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Flavor: ${flavor}</li>
+                    <li class="list-group-item">Size: ${size}</li>
+                    <li class="list-group-item">Rating: ${rating}</li>
+                </ul>
+            </div>
+            `
+};
