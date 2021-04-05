@@ -12,8 +12,8 @@ class Cupcake(db.Model):
 
     __tablename__ = 'cupcakes'
 
-    id = db.Column(db.Text, autoincrement = True, primary_key = True)
+    id = db.Column(db.Integer, autoincrement = True, primary_key = True)
     flavor = db.Column(db.Text, nullable = False)
     size = db.Column(db.Text, nullable = False)
     rating = db.Column(db.Float, nullable = False)
-    image = db.Column(db.Float, nullable = False, default = 'https://tinyurl.com/demo-cupcake')
+    image = db.Column(db.Text, nullable = False, default = 'https://tinyurl.com/demo-cupcake')
