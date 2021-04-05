@@ -1,6 +1,5 @@
 """Models for Cupcake app."""
 from flask_sqlalchemy import SQLAlchemy
-from app import app
 
 db = SQLAlchemy()
 
@@ -8,3 +7,13 @@ def connect_db(app):
     db.app = app
     db.init_app(app)
 
+class Cupcake(db.Model):
+    """Make a relation for cupcakes."""
+
+    __tablename__ = 'cupcakes'
+
+    id = db.Column(db.Text, autoincrement = True, primary_key = True)
+    flavor = db.Column(db.Text, nullable = False)
+    size = db.Column(db.Text, nullable = False)
+    rating = db.Column(db.Float, nullable = False)
+    image = db.Column(db.Float, nullable = False, default = 'https://tinyurl.com/demo-cupcake')
